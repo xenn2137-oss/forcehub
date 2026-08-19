@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORCEHUB.PL - Twoje mroczne Imperium gry!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Poświata podążająca za myszką -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Kontener na generowane gwiazdy w tle -->
+    <div class="stars-container" id="starsContainer"></div>
+
+    <!-- Efekty tła i poświaty stałe -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="hero-character-bg"></div>
+
+    <!-- Nawigacja -->
+    <nav class="navbar">
+        <div class="nav-links left">
+            <a href="#" class="active">START</a>
+            <a href="https://vishop.pl/shop/30029/server/28387" target="_blank">SKLEP 👑</a>
+        </div>
+        
+        <div class="logo-wrapper">
+            <img src="logo.png" alt="FORCEHUB.PL" class="main-logo">
+        </div>
+
+        <div class="nav-links right">
+            <a href="#">VOUCHER</a>
+            <a href="#">REGULAMIN</a>
+        </div>
+    </nav>
+
+    <!-- Główna sekcja -->
+    <main class="hero">
+        <div class="title-container">
+            <h1 class="hero-title">FORCEHUB.PL - Twoje<br>mroczne Imperium gry!</h1>
+            <p class="hero-subtitle"> Dołącz do niesamowitego świata minecraft </p>
+        </div>
+
+        <!-- Przyciski -->
+        <div class="nodes-area">
+            <button class="node-btn copy-btn" onclick="navigator.clipboard.writeText('forcehub.pl'); alert('Skopiowano IP: forcehub.pl');">
+                <span class="btn-icon">🧩</span> Skopiuj IP
+            </button>
+
+            <!-- Przycisk Discord otwierający się w nowej karcie z linkiem dc.gg/forcehub -->
+            <a href="https://dc.gg/forcehub" target="_blank" class="node-btn discord-btn">
+                <span class="btn-icon">💬</span> 
+                <div class="discord-info">
+                    <span class="small-text">Dołącz do nas</span>
+                    <span class="big-text">140+ osób</span>
+                </div>
+            </a>
+
+            <a href="https://vishop.pl/shop/30029/server/28387" target="_blank" class="node-btn shop-btn">
+                <span class="btn-icon">🛒</span> Sklep
+            </a>
+        </div>
+
+        <!-- Pasek Graczy Online -->
+        <div class="online-widget">
+            <div class="widget-box left-box">📦</div>
+            <div class="widget-content">
+                <div class="avatar-stack">
+                    <div class="avatar av1"></div>
+                    <div class="avatar av2"></div>
+                </div>
+                <div class="widget-text">
+                    <span class="status-title">Serwer Online</span>
+                    <span class="status-count">Aktualnie jest 140+ osób</span>
+                </div>
+            </div>
+            <div class="widget-box right-box">💰</div>
+        </div>
+    </main>
+
+    <!-- Skrypt obsługujący ruch myszki i generowanie gwiazd -->
+    <script>
+        // Śledzenie ruchu myszki dla poświaty
+        const cursorGlow = document.getElementById('cursorGlow');
+        window.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
+        // Generowanie losowych gwiazd na tle
+        const starsContainer = document.getElementById('starsContainer');
+        const numStars = 120;
+
+        for (let i = 0; i < numStars; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const size = Math.random() * 2.5 + 1;
+            const duration = Math.random() * 3 + 2;
+            const delay = Math.random() * 5;
+
+            star.style.left = `${x}%`;
+            star.style.top = `${y}%`;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.setProperty('--duration', `${duration}s`);
+            star.style.setProperty('--delay', `${delay}s`);
+
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
